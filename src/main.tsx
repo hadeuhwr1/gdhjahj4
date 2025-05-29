@@ -1,5 +1,6 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import {
   RainbowKitProvider,
   getDefaultWallets
@@ -37,10 +38,12 @@ createRoot(document.getElementById('root')!).render(
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider chains={chains}>
-          <SoundProvider>
-            <Toaster />
-            <App />
-          </SoundProvider>
+          <BrowserRouter>
+            <SoundProvider>
+              <Toaster />
+              <App />
+            </SoundProvider>
+          </BrowserRouter>
         </RainbowKitProvider>
       </QueryClientProvider>
     </WagmiProvider>
