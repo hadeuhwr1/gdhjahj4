@@ -241,68 +241,7 @@ const Header = React.memo<HeaderProps>(({ onStoryMenuReset }) => {
   }, [address, closeProfileMenu, truncatedAddress, copyAddressCb, balanceDisplay, handleDisconnectCb, playSound]);
 
   const CustomConnectButton = () => {
-    return (
-      <ConnectButton.Custom>
-        {({ account, chain, openConnectModal, openChainModal, mounted }) => {
-          if (!mounted) {
-            return <div style={{ minWidth: '150px', height: '42px' }} aria-hidden="true" />;
-          }
-          const connected = mounted && account && chain;
-          if (!connected) {
-            return (
-              <button
-                onClick={() => {
-                  playSound('/assets/sounds/robot-click.wav');
-                  openConnectModal();
-                }}
-                className="button-primary"
-              >
-                Connect Wallet
-              </button>
-            );
-          }
-          if (chain.unsupported) {
-            return (
-              <button
-                onClick={() => {
-                  playSound('/assets/sounds/robot-click.wav');
-                  openChainModal();
-                }}
-                className="button-primary text-red-500"
-              >
-                Wrong network
-              </button>
-            );
-          }
-          return (
-            <div className="relative" data-profile-menu-boundary>
-              <button
-                onClick={toggleProfileMenu}
-                className="button-primary px-3 py-2 flex items-center space-x-2"
-              >
-                <span>{truncatedAddress}</span>
-              </button>
-              <div
-                className={`
-                  z-[100] bg-gray-900/95 backdrop-blur-md shadow-xl
-                  transition-all duration-300 ease-in-out
-                  md:absolute md:right-0 md:top-full md:mt-2 md:w-72 md:rounded-lg md:border md:border-cyan-glow/30
-                  fixed inset-x-0 bottom-0 border-t border-cyan-glow/30 md:inset-auto md:border-none md:rounded-none
-                  max-h-[70vh] md:max-h-[80vh] overflow-y-auto
-                  ${showProfileMenu
-                    ? 'opacity-100 visible translate-y-0'
-                    : 'opacity-0 invisible translate-y-full md:translate-y-0'
-                  }
-                `}
-                data-profile-menu-boundary
-              >
-                {ProfileMenuContent}
-              </div>
-            </div>
-          );
-        }}
-      </ConnectButton.Custom>
-    );
+    return <CustomWalletButton />;
   };
 
   const navItems = useMemo(() => ['Mission', 'Story', 'Roadmap', 'Tokenomics', 'Community'], []);
