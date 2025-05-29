@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi';
 import { toast } from 'sonner';
 import { ArrowLeft, Rocket, Coins } from 'lucide-react';
 import Button from '../components/ui/Button';
+import CustomWalletButton from '../components/ui/CustomWalletButton';
 import ParticleBackground from '../components/ui/ParticleBackground';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL;
@@ -107,7 +107,7 @@ function ClaimPage() {
           <div className="bg-gray-900/50 backdrop-blur-sm border border-cyan-glow/30 rounded-lg p-6 md:p-8 mb-8">
             <div className="flex flex-col items-center gap-6">
               <div className="w-full flex justify-center">
-                <ConnectButton />
+                <CustomWalletButton />
               </div>
 
               {isConnected && (
